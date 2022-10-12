@@ -1,0 +1,15 @@
+body
+{
+    background-color: black ;
+    font-family: Arial ;
+    font-size:20px;
+    color:lime;
+    text-align: center;
+    height:1200px;
+}
+.form_class_border
+{
+    background-color: gray ;
+    border-style: solid;
+    color:aqua;
+}
