@@ -3,13 +3,14 @@
 <head>
     <meta charset="utf-8">
     <title>Delivery time calculation</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
     <header> 
         <h1>Delivery time calculation</h1>
         <p>Simple website to calculate delivery time based on several conditions</p>
     </header>
-
+    <div class="form_class_border">
     <form action="#" onsubmit="return showDeliveryTime(this);">
         Distance (km): <input name="distance" required>
 
@@ -27,6 +28,7 @@
         <br /><br />
         <input type="submit" value="Calculate!">
     </form>
+    </div>
 
     <script>
         function showDeliveryTime(theForm) {
