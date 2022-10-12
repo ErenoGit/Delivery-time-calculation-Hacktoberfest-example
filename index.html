@@ -1,0 +1,42 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Delivery time calculation</title>
+</head>
+<body>
+    <header> 
+        <h1>Delivery time calculation</h1>
+        <p>Simple website to calculate delivery time based on several conditions</p>
+    </header>
+
+    <form action="#" onsubmit="return showDeliveryTime(this);">
+        Distance (km): <input name="distance" required>
+
+        <p>Mode of transport:</p>
+        <input type="radio" name="mode" value="onFoot" required>on foot
+        <input type="radio" name="mode" value="byBike" required>by bike
+        <input type="radio" name="mode" value="byScooter" required>by scooter
+        <input type="radio" name="mode" value="byCar" required>by car
+
+        <p>Weather:</p>
+        <input type="radio" name="weather" value="sunny" required>sunny
+        <input type="radio" name="weather" value="rainy" required>rainy
+        <input type="radio" name="weather" value="stormy" required>stormy/very rainy
+
+        <br /><br />
+        <input type="submit" value="Calculate!">
+    </form>
+
+    <script>
+        function showDeliveryTime(theForm) {
+            //to do
+            document.getElementById("result").innerHTML = "test";
+
+            return false;
+        }
+    </script>
+
+    <div id="result"></div>
+</body>
+</html>
