@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Delivery time calculation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
@@ -11,7 +12,7 @@
         <p>Simple website to calculate delivery time based on several conditions</p>
     </header>
     <div class="form_class_border">
-    <form action="#" onsubmit="return showDeliveryTime(this);">
+    <form onsubmit="return false">
         Distance (km): <input id="dist" name="distance" required>
 
         <p>Mode of transport:</p>
@@ -37,9 +38,9 @@
     <script>
         function showDeliveryTime(theForm) {
             var distance = document.getElementById("dist").value;
-            var transport = document.getElementById("trans").value;
-            var weather = document.getElementById("weat").value;
-            var infrastructure = document.getElementById("infr").value;
+            var transport = $("input[name=mode]:checked").val();
+            var weather = $("input[name=weather]:checked").val();
+            var infrastructure = $("input[name=infrastructure]:checked").val();
             var result = "";
             var speedDivision, weatherMultiplier;
 
@@ -65,10 +66,10 @@
                     weatherMultiplier = 1;
                 break;
                 case "rainy":
-                    speedMultiplier = 0.8;
+                    weatherMultiplier = 0.8;
                 break;
                 case "stormy":
-                    speedMultiplier = 0.6;
+                    weatherMultiplier = 0.6;
                 break;
             }
 
@@ -83,11 +84,11 @@
             }
 
             result = distance / speedDivision * weatherMultiplier * infrastructure;
-            document.getElementById("result").innerHTML = "Estimated devliery time: " + result + "h";
+            document.getElementById("result").innerHTML = "Estimated devliery time: " + result.toFixed(2) + "h";
             return false;
         };
     </script>
-
+    </br>
     <div id="result"></div>
 </body>
 </html>
