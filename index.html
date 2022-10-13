@@ -25,6 +25,10 @@
         <input type="radio" id="weat" name="weather" value="rainy" required>rainy
         <input type="radio" id="weat" name="weather" value="stormy" required>stormy/very rainy
 
+        <p>Infrastructure:</p>
+        <input type="radio" id="infr" name="infrastructure" value="city" required>City
+        <input type="radio" id="infr" name="infrastructure" value="village" required>Village
+
         <br /><br />
         <input type="submit" value="Calculate!" onclick="showDeliveryTime()">
     </form>
@@ -35,42 +39,51 @@
             var distance = document.getElementById("dist").value;
             var transport = document.getElementById("trans").value;
             var weather = document.getElementById("weat").value;
-            if (transport == 'onFoot' && weather == 'sunny') {
-            document.getElementById("result").innerHTML = distance / 4; //assuming a human speed of 4 km / h
+            var infrastructure = document.getElementById("infr").value;
+            var result = "";
+            var speedDivision, weatherMultiplier;
+
+            switch(transport)
+            {
+                case "onFoot":
+                    speedDivision = 4; //assuming a human speed of 4 km / h
+                break;
+                case "byBike":
+                    speedDivision = 10; //assuming a human on bike 10 km / h
+                break;
+                case "byScooter":
+                    speedDivision = 40; //assuming a human on Scooter 40 km / h
+                break;
+                case "byCar":
+                    speedDivision = 90; //assuming a human in Car 90 km / h
+                break;
             }
-            if (transport == "onFoot" && weather == "rainy") {
-            document.getElementById("result").innerHTML = distance / 4 * 0.8;
+
+            switch(weather)
+            {
+                case "sunny":
+                    weatherMultiplier = 1;
+                break;
+                case "rainy":
+                    speedMultiplier = 0.8;
+                break;
+                case "stormy":
+                    speedMultiplier = 0.6;
+                break;
             }
-            if (transport == "onFoot" && weather == "stormy") {
-            document.getElementById("result").innerHTML = distance / 4 * 0.6;
+
+            switch(infrastructure)
+            {
+                case "city":
+                infrastructure = 1.25;
+                break;
+                case "village":
+                infrastructure = 1;
+                break;
             }
-            if (transport == "byBike" && weather == "sunny") {
-            document.getElementById("result").innerHTML = distance / 10; //assuming a human on bike 10 km / h
-            }
-            if (transport == "byBike" && weather == "rainy") {
-            document.getElementById("result").innerHTML = distance / 10 * 0.8;
-            }
-            if (transport == "byBike" && weather == "stormy") {
-            document.getElementById("result").innerHTML = distance / 10 * 0.6;
-            }
-            if (transport == "byScooter" && weather == "sunny") {
-            document.getElementById("result").innerHTML = distance / 40; //assuming a human on Scooter 40 km / h
-            }
-            if (transport == "byScooter" && weather == "rainy") {
-            document.getElementById("result").innerHTML = distance / 40 * 0.8;
-            }
-            if (transport == "byScooter" && weather == "stormy") {
-            document.getElementById("result").innerHTML = distance / 40 * 0.6;
-            }
-            if (transport == "byCar" && weather == "sunny") {
-            document.getElementById("result").innerHTML = distance / 90; //assuming a human in Car 90 km / h
-            }
-            if (transport == "byCar" && weather == "rainy") {
-            document.getElementById("result").innerHTML = distance / 90 * 0.8;
-            }
-            if (transport == "byCar" && weather == "stormy") {
-            document.getElementById("result").innerHTML = distance / 90 * 0.6;
-            }
+
+            result = distance / speedDivision * weatherMultiplier * infrastructure;
+            document.getElementById("result").innerHTML = "Estimated devliery time: " + result + "h";
             return false;
         };
     </script>
