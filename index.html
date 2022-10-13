@@ -12,31 +12,67 @@
     </header>
     <div class="form_class_border">
     <form action="#" onsubmit="return showDeliveryTime(this);">
-        Distance (km): <input name="distance" required>
+        Distance (km): <input id="dist" name="distance" required>
 
         <p>Mode of transport:</p>
-        <input type="radio" name="mode" value="onFoot" required>on foot
-        <input type="radio" name="mode" value="byBike" required>by bike
-        <input type="radio" name="mode" value="byScooter" required>by scooter
-        <input type="radio" name="mode" value="byCar" required>by car
+        <input type="radio" id="trans" name="mode" value="onFoot" required>on foot
+        <input type="radio" id="trans" name="mode" value="byBike" required>by bike
+        <input type="radio" id="trans" name="mode" value="byScooter" required>by scooter
+        <input type="radio" id="trans" name="mode" value="byCar" required>by car
 
         <p>Weather:</p>
-        <input type="radio" name="weather" value="sunny" required>sunny
-        <input type="radio" name="weather" value="rainy" required>rainy
-        <input type="radio" name="weather" value="stormy" required>stormy/very rainy
+        <input type="radio" id="weat" name="weather" value="sunny" required>sunny
+        <input type="radio" id="weat" name="weather" value="rainy" required>rainy
+        <input type="radio" id="weat" name="weather" value="stormy" required>stormy/very rainy
 
         <br /><br />
-        <input type="submit" value="Calculate!">
+        <input type="submit" value="Calculate!" onclick="showDeliveryTime()">
     </form>
     </div>
 
     <script>
         function showDeliveryTime(theForm) {
-            //to do
-            document.getElementById("result").innerHTML = "test";
-
+            var distance = document.getElementById("dist").value;
+            var transport = document.getElementById("trans").value;
+            var weather = document.getElementById("weat").value;
+            if (transport == 'onFoot' && weather == 'sunny') {
+            document.getElementById("result").innerHTML = distance / 4; //assuming a human speed of 4 km / h
+            }
+            if (transport == "onFoot" && weather == "rainy") {
+            document.getElementById("result").innerHTML = distance / 4 * 0.8;
+            }
+            if (transport == "onFoot" && weather == "stormy") {
+            document.getElementById("result").innerHTML = distance / 4 * 0.6;
+            }
+            if (transport == "byBike" && weather == "sunny") {
+            document.getElementById("result").innerHTML = distance / 10; //assuming a human on bike 10 km / h
+            }
+            if (transport == "byBike" && weather == "rainy") {
+            document.getElementById("result").innerHTML = distance / 10 * 0.8;
+            }
+            if (transport == "byBike" && weather == "stormy") {
+            document.getElementById("result").innerHTML = distance / 10 * 0.6;
+            }
+            if (transport == "byScooter" && weather == "sunny") {
+            document.getElementById("result").innerHTML = distance / 40; //assuming a human on Scooter 40 km / h
+            }
+            if (transport == "byScooter" && weather == "rainy") {
+            document.getElementById("result").innerHTML = distance / 40 * 0.8;
+            }
+            if (transport == "byScooter" && weather == "stormy") {
+            document.getElementById("result").innerHTML = distance / 40 * 0.6;
+            }
+            if (transport == "byCar" && weather == "sunny") {
+            document.getElementById("result").innerHTML = distance / 90; //assuming a human in Car 90 km / h
+            }
+            if (transport == "byCar" && weather == "rainy") {
+            document.getElementById("result").innerHTML = distance / 90 * 0.8;
+            }
+            if (transport == "byCar" && weather == "stormy") {
+            document.getElementById("result").innerHTML = distance / 90 * 0.6;
+            }
             return false;
-        }
+        };
     </script>
 
     <div id="result"></div>
